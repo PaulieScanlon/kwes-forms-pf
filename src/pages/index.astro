@@ -1,7 +1,7 @@
 ---
 import Main from '../layouts/main.astro';
 
-const response = await fetch('https://kwes.io/api/v1/forms/XRrkzNJYBCCtapiFhR3g/submissions?mode=development', {
+const response = await fetch('https://kwes.io/api/v1/forms/5689/submissions', {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -23,26 +23,31 @@ const data = await response.json();
   >
     <div class='flex flex-col'>
       <label for='name' class='block'>Your Name</label>
-      <input type='text' name='name' rules='required|max:255' />
+      <input type='text' id='name' name='name' rules='required|max:255' autocomplete='off' />
     </div>
     <fieldset repeater name='unique_name' class='border border-zinc-300 p-4'>
       <div repeater-group class='flex flex-col gap-6'>
         <div class='flex flex-col'>
-          <label for='Language' class='block'>Language or Technology</label>
-          <input type='text' name='Language' rules='required|max:255' />
+          <label for='language' class='block'>Language or Technology</label>
+          <input type='text' id='language' name='language' rules='required|max:255' autocomplete='off' />
         </div>
-        <fieldset data-kw-group rules='required' class='flex gap-3 mb-6'>
-          <label for='novice'>Novice</label>
-          <input type='checkbox' name='skill-level' name='novice' value='Novice' />
-
-          <label for='intermediate'>Intermediate</label>
-          <input type='checkbox' name='skill-level' name='intermediate' value='Intermediate' />
-
-          <label for='proficient'>Proficient</label>
-          <input type='checkbox' name='skill-level' name='proficient' value='Proficient' />
-
-          <label for='expert'>Expert</label>
-          <input type='checkbox' name='skill-level' name='expert' value='Expert' />
+        <fieldset data-kw-group rules='required' class='flex items-center gap-6 mb-6'>
+          <div>
+            <input type='checkbox' id='novice' name='skill-level' value='Novice' />
+            <label for='novice'>Novice</label>
+          </div>
+          <div>
+            <input type='checkbox' id='intermediate' name='skill-level' value='Intermediate' />
+            <label for='intermediate'>Intermediate</label>
+          </div>
+          <div>
+            <input type='checkbox' id='proficient' name='skill-level' value='Proficient' />
+            <label for='proficient'>Proficient</label>
+          </div>
+          <div>
+            <input type='checkbox' id='expert' name='skill-level' value='Expert' />
+            <label for='expert'>Expert</label>
+          </div>
         </fieldset>
       </div>
     </fieldset>
