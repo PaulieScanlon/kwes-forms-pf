@@ -16,22 +16,37 @@ const data = await response.json();
 
 <Main>
   <h1>Skills</h1>
-  <form class='kwes-form' no-reload action='https://kwesforms.com/api/foreign/forms/XRrkzNJYBCCtapiFhR3g'>
-    <label for='name'>Your Name</label>
-    <input type='text' name='name' rules='required|max:255' />
-    <fieldset repeater name='unique_name'>
-      <div repeater-group>
-        <label for='Language'>Language or Technology</label>
-        <input type='text' name='Language' rules='required|max:255' />
-        <fieldset data-kw-group rules='required'>
-          <input type='checkbox' name='skill-level' value='Novice' /> Novice
-          <input type='checkbox' name='skill-level' value='Intermediate' /> Intermediate
-          <input type='checkbox' name='skill-level' value='Proficient' /> Proficient
-          <input type='checkbox' name='skill-level' value='Expert' /> Expert
+  <form
+    class='kwes-form flex flex-col gap-6'
+    no-reload
+    action='https://kwesforms.com/api/foreign/forms/XRrkzNJYBCCtapiFhR3g'
+  >
+    <div class='flex flex-col'>
+      <label for='name' class='block'>Your Name</label>
+      <input type='text' name='name' rules='required|max:255' />
+    </div>
+    <fieldset repeater name='unique_name' class='border border-zinc-300 p-4'>
+      <div repeater-group class='flex flex-col gap-6'>
+        <div class='flex flex-col'>
+          <label for='Language' class='block'>Language or Technology</label>
+          <input type='text' name='Language' rules='required|max:255' />
+        </div>
+        <fieldset data-kw-group rules='required' class='flex gap-3 mb-6'>
+          <label for='novice'>Novice</label>
+          <input type='checkbox' name='skill-level' name='novice' value='Novice' />
+
+          <label for='intermediate'>Intermediate</label>
+          <input type='checkbox' name='skill-level' name='intermediate' value='Intermediate' />
+
+          <label for='proficient'>Proficient</label>
+          <input type='checkbox' name='skill-level' name='proficient' value='Proficient' />
+
+          <label for='expert'>Expert</label>
+          <input type='checkbox' name='skill-level' name='expert' value='Expert' />
         </fieldset>
       </div>
     </fieldset>
-    <button type='submit'>Submit</button>
+    <button type='submit' class='bg-green-500 text-white font-medium rounded px-4 text-center'>Submit</button>
   </form>
   <pre>{JSON.stringify(data, null, 2)}</pre>
 </Main>
