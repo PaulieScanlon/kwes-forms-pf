@@ -1,6 +1,7 @@
 ---
 const { data } = Astro.props;
 
+import { scaleLinear } from 'd3-scale';
 import { findMaxValue } from '../utils/find-max-value';
 import { colors } from '../utils/colors';
 
@@ -15,7 +16,7 @@ const maxValue = findMaxValue(data);
 const xAxis = new Array(8).fill(null);
 const axisPaddingB = 80;
 const axisPaddingT = 100;
-const xValues = Array.from({ length: Math.min(maxValue + 1, xAxis.length) }, (_, index) => index);
+const xValues = scaleLinear().domain([0, maxValue]).range([0, xAxis.length]).ticks();
 
 const properties = data
   .sort((a, b) => b.count - a.count)
