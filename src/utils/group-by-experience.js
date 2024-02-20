@@ -1,9 +1,9 @@
-export const GroupByExperience = (data) => {
-  return data.reduce((acc, obj) => {
-    const { experience } = obj;
+export const groupByExperience = (data) => {
+  return data.reduce((items, item) => {
+    const { experience } = item;
 
-    acc[experience] = acc[experience] || { count: 0 };
-    acc[experience].count++;
-    return acc;
+    items[experience] = items[experience] || { count: 0 };
+    items[experience].count++;
+    return items;
   }, {});
 };

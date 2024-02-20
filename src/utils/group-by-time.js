@@ -1,9 +1,9 @@
-export const GroupByTime = (data) => {
-  return data.reduce((acc, obj) => {
-    const { time } = obj;
+export const groupByTime = (data) => {
+  return data.reduce((items, item) => {
+    const { time } = item;
 
-    acc[time] = acc[time] || { count: 0 };
-    acc[time].count++;
-    return acc;
+    items[time] = items[time] || { count: 0 };
+    items[time].count++;
+    return items;
   }, {});
 };
