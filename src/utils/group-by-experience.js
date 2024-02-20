@@ -1,9 +1,16 @@
 export const groupByExperience = (data) => {
-  return data.reduce((items, item) => {
+  const groupedData = data.reduce((result, item) => {
     const { experience } = item;
+    const existingItemIndex = result.findIndex((obj) => obj.name === experience);
 
-    items[experience] = items[experience] || { count: 0 };
-    items[experience].count++;
-    return items;
-  }, {});
+    if (existingItemIndex !== -1) {
+      result[existingItemIndex].count++;
+    } else {
+      result.push({ name: experience, count: 1 });
+    }
+
+    return result;
+  }, []);
+
+  return groupedData;
 };

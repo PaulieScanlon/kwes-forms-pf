@@ -1,9 +1,16 @@
 export const groupByTime = (data) => {
-  return data.reduce((items, item) => {
+  const groupedData = data.reduce((result, item) => {
     const { time } = item;
+    const existingItemIndex = result.findIndex((obj) => obj.name === time);
 
-    items[time] = items[time] || { count: 0 };
-    items[time].count++;
-    return items;
-  }, {});
+    if (existingItemIndex !== -1) {
+      result[existingItemIndex].count++;
+    } else {
+      result.push({ name: time, count: 1 });
+    }
+
+    return result;
+  }, []);
+
+  return groupedData;
 };

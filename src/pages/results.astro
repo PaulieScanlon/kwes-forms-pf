@@ -4,6 +4,8 @@ import { groupByTime } from '../utils/group-by-time';
 import { groupByExperience } from '../utils/group-by-experience';
 import { groupByTechnology } from '../utils/group-by-technology';
 
+import BarChart from '../components/bar-chart.astro';
+
 const response = await fetch('https://kwes.io/api/v1/forms/5689/submissions?mode=production', {
   method: 'GET',
   headers: {
@@ -23,10 +25,10 @@ const byTechnology = groupByTechnology(data);
 
 <Main>
   <p class='mt-0 mb-16'>Results of the survey so far.</p>
-  <h2>Time</h2>
-  <pre>{JSON.stringify(byTime, null, 2)}</pre>
-  <h2>Experience</h2>
-  <pre>{JSON.stringify(byExperience, null, 2)}</pre>
   <h2>Technology</h2>
-  <pre>{JSON.stringify(byTechnology, null, 2)}</pre>
+  <BarChart data={byTechnology} />
+  <h2>Experience</h2>
+  <BarChart data={byExperience} />
+  <h2>Time</h2>
+  <BarChart data={byTime} />
 </Main>

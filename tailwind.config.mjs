@@ -26,7 +26,6 @@ export default {
           outline: '#312e59',
           surface: '#16142c',
           guide: '#2d2a58',
-          radar: '#57538c',
         },
       },
       fontFamily: {

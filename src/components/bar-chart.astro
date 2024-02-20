@@ -1,0 +1,101 @@
+---
+const { data } = Astro.props;
+
+import { findMaxValue } from '../utils/find-max-value';
+import { colors } from '../utils/colors';
+
+const chartWidth = 1920;
+const chartHeight = 1080;
+
+const paddingL = 100;
+const paddingR = 100;
+const paddingT = 100;
+const paddingB = 180;
+const maxValue = findMaxValue(data);
+const xAxis = new Array(8).fill(null);
+const axisPaddingB = 80;
+const axisPaddingT = 100;
+const xValues = Array.from({ length: Math.min(maxValue + 1, xAxis.length) }, (_, index) => index);
+
+const properties = data
+  .sort((a, b) => b.count - a.count)
+  .map((property, index) => {
+    const { name, count } = property;
+
+    const x = paddingL;
+    const width = ((chartWidth - paddingL - paddingR) / maxValue) * count;
+    const height = (chartHeight - paddingT - paddingB) / data.length;
+
+    const y = height * index + paddingT;
+
+    return {
+      name: name,
+      count: count,
+      font: 40,
+      x: x,
+      y: y,
+      width: width,
+      height: height,
+      color: colors[index],
+    };
+  });
+
+const guides = xAxis.map((_, index) => {
+  const value = xValues[index];
+
+  const x = (chartWidth / xAxis.length) * index + paddingL;
+
+  const width = 2;
+  const height = chartHeight - axisPaddingT - axisPaddingB;
+  const y = axisPaddingT;
+
+  return {
+    value: value,
+    x: x,
+    y: y,
+    width: width,
+    height: height,
+  };
+});
+---
+
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+  class='bg-brand-surface border border-brand-outline rounded'
+>
+  {
+    guides.map((guide) => {
+      const { value, x, y, width, height } = guide;
+
+      return (
+        <>
+          <rect x={x} y={y} width={width} height={height} class='fill-brand-guide' />
+          <text x={x} y={y + height} class='fill-brand-muted' text-anchor='middle' font-size={30}>
+            {value}
+          </text>
+        </>
+      );
+    })
+  }
+  {
+    properties.map((property) => {
+      const { name, count, font, x, y, width, height, color } = property;
+
+      return (
+        <>
+          <rect x={x} y={y} width={width} height={height} fill={color} />
+          <text
+            x={chartWidth - paddingR - 20}
+            y={y + height / 2 + font / 2}
+            class='fill-brand-text font-bold'
+            text-anchor='end'
+            font-size={font}
+          >
+            {`${name} x${count}`}
+          </text>
+        </>
+      );
+    })
+  }
+</svg>
