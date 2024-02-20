@@ -6,15 +6,18 @@ import { groupByTechnology } from '../utils/group-by-technology';
 
 import BarChart from '../components/bar-chart.astro';
 
-const response = await fetch('https://kwes.io/api/v1/forms/5694/submissions?mode=production', {
-  method: 'GET',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${import.meta.env.KWESFORMS_API_KEY}`,
-  },
-  redirect: 'follow',
-});
+const response = await fetch(
+  `https://kwes.io/api/v1/forms/${import.meta.env.KWESFORMS_FORM_ID}/submissions?mode=production`,
+  {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${import.meta.env.KWESFORMS_API_KEY}`,
+    },
+    redirect: 'follow',
+  }
+);
 
 const data = await response.json();
 
