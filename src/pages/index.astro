@@ -1,57 +1,79 @@
 ---
 import Main from '../layouts/main.astro';
-
-const response = await fetch('https://kwes.io/api/v1/forms/5689/submissions', {
-  method: 'GET',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer gwEvpqTVnGDA4s5vOHeIAcOxSO566jXZ5EPjfFjWWuXThX61CHlg5I8J4Wwt',
-  },
-  redirect: 'follow',
-});
-
-const data = await response.json();
 ---
 
 <Main>
-  <h1>Skills</h1>
+  <p class='mt-0 mb-16'>Please take a few moments to answer the following questions.</p>
   <form
-    class='kwes-form flex flex-col gap-6'
+    class='kwes-form flex flex-col'
     no-reload
     action='https://kwesforms.com/api/foreign/forms/XRrkzNJYBCCtapiFhR3g'
+    redirect='/results'
   >
-    <div class='flex flex-col'>
-      <label for='name' class='block'>Your Name</label>
-      <input type='text' id='name' name='name' rules='required|max:255' autocomplete='off' />
-    </div>
-    <fieldset repeater name='unique_name' class='border border-zinc-300 p-4'>
-      <div repeater-group class='flex flex-col gap-6'>
-        <div class='flex flex-col'>
-          <label for='language' class='block'>Language or Technology</label>
-          <input type='text' id='language' name='language' rules='required|max:255' autocomplete='off' />
+    <h2 class='m-0'>1. Technology</h2>
+    <p>Which technologies are you most interested in?</p>
+    <fieldset repeater name='unique_name' class='flex flex-col gap-6'>
+      <div repeater-group class='flex flex-col gap-6 border border-brand-guide bg-brand-surface p-4'>
+        <div class='flex flex-col gap-1'>
+          <label for='technology' class='block'>Technology</label>
+          <select id='technology' name='technology'>
+            <option hidden>Please select</option>
+            <option>React</option>
+            <option>Qwik</option>
+            <option>Astro</option>
+            <option>Remix</option>
+            <option>Serverless</option>
+            <option>Edge</option>
+            <option>Postgres</option>
+            <option>SQL</option>
+            <option>CSS</option>
+            <option>SVG</option>
+          </select>
         </div>
-        <fieldset data-kw-group rules='required' class='flex items-center gap-6 mb-6'>
-          <div>
-            <input type='checkbox' id='novice' name='skill-level' value='Novice' />
-            <label for='novice'>Novice</label>
-          </div>
-          <div>
-            <input type='checkbox' id='intermediate' name='skill-level' value='Intermediate' />
-            <label for='intermediate'>Intermediate</label>
-          </div>
-          <div>
-            <input type='checkbox' id='proficient' name='skill-level' value='Proficient' />
-            <label for='proficient'>Proficient</label>
-          </div>
-          <div>
-            <input type='checkbox' id='expert' name='skill-level' value='Expert' />
-            <label for='expert'>Expert</label>
-          </div>
-        </fieldset>
       </div>
     </fieldset>
-    <button type='submit' class='bg-green-500 text-white font-medium rounded px-4 text-center'>Submit</button>
+    <hr />
+    <h2 class='m-0'>2. Experience</h2>
+    <p>How many years experience do you have?</p>
+    <div class='border border-brand-guide bg-brand-surface p-4'>
+      <fieldset data-kw-group rules='required' class='flex items-center gap-6'>
+        <div class='flex gap-2 items-center'>
+          <input type='checkbox' id='novice' name='skill-level' value='1-5' />
+          <label for='novice'>1-5</label>
+        </div>
+        <div class='flex gap-2 items-center'>
+          <input type='checkbox' id='intermediate' name='skill-level' value='5-10' />
+          <label for='intermediate'>5-10</label>
+        </div>
+        <div class='flex gap-2 items-center'>
+          <input type='checkbox' id='proficient' name='skill-level' value='10-20' />
+          <label for='proficient'>10-20</label>
+        </div>
+        <div class='flex gap-2 items-center'>
+          <input type='checkbox' id='expert' name='skill-level' value='20+' />
+          <label for='expert'>20+</label>
+        </div>
+      </fieldset>
+    </div>
+    <hr />
+    <h2 class='m-0'>3. Time</h2>
+    <p>When do you prefer to read technical content?</p>
+    <div class='border border-brand-guide bg-brand-surface p-4'>
+      <div class='flex flex-col gap-1'>
+        <label for='time' class='block'>Time</label>
+        <select id='time' name='time'>
+          <option hidden>Please select</option>
+          <option>🌞 Daytime</option>
+          <option>🌚 Nighttime</option>
+          <option>🌓 Anytime</option>
+        </select>
+      </div>
+    </div>
+    <hr />
+    <button
+      type='submit'
+      class='border-2 border-brand-salmon text-brand-salmon font-bold rounded-full text-lg min-h-12 px-4 text-center'
+      >Submit</button
+    >
   </form>
-  <pre>{JSON.stringify(data, null, 2)}</pre>
 </Main>

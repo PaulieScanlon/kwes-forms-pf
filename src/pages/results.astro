@@ -1,0 +1,20 @@
+---
+import Main from '../layouts/main.astro';
+
+const response = await fetch('https://kwes.io/api/v1/forms/5689/submissions', {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer gwEvpqTVnGDA4s5vOHeIAcOxSO566jXZ5EPjfFjWWuXThX61CHlg5I8J4Wwt',
+  },
+  redirect: 'follow',
+});
+
+const data = await response.json();
+---
+
+<Main>
+  <p class='mt-0 mb-16'>Results of the survey so far.</p>
+  <pre>{JSON.stringify(data, null, 2)}</pre>
+</Main>

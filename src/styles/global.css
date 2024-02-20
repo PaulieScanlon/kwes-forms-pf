@@ -1,3 +1,23 @@
 .kw-fieldgroup-button-add {
-  @apply bg-blue-400 text-white rounded px-3 py-1 text-center;
+  @apply bg-brand-tertiary text-brand-background font-bold rounded-full min-w-24;
+}
+
+.kw-fieldgroup-button-remove {
+  @apply border border-brand-blood text-brand-blood font-bold rounded-full min-w-24;
+}
+
+.kw-alert-error {
+  @apply !bg-transparent border-2 border-brand-blood !text-brand-blood;
+}
+
+.kw-alert-success {
+  @apply !bg-transparent border-2 border-brand-lime !text-brand-lime;
+}
+
+.kw-border-success {
+  @apply !border-brand-lime;
+}
+
+.kw-field-error-message {
+  @apply !text-brand-blood;
 }

@@ -1,13 +1,36 @@
 ---
+import '@fontsource/inconsolata/300.css';
+import '@fontsource/inconsolata/400.css';
+import '@fontsource/inconsolata/500.css';
+import '@fontsource/inconsolata/700.css';
+import '@fontsource/inconsolata/900.css';
+
 import '../styles/global.css';
+
+import Logo from '../components/logo.astro';
 ---
 
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
   </head>
-  <body>
-    <main class='prose p-4 mx-auto max-w-3xl'>
+  <body class='bg-brand-background'>
+    <header
+      class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-30'
+    >
+      <div class='max-w-8xl mx-auto'>
+        <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
+          <div class='relative flex items-center gap-8'>
+            <a class='flex items-center' href='/' aria-current='page'>
+              <span class='sr-only'>Paul Scanlon</span>
+              <Logo />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class='prose px-4 py-32 pb-16 mx-auto max-w-3xl'>
+      <h1 class='mb-0'>Readers Survey</h1>
       <slot />
     </main>
   </body>
