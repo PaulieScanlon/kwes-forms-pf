@@ -27,7 +27,6 @@ const properties = data
     const x = paddingL;
     const width = ((chartWidth - paddingL - paddingR) / maxValue) * count;
     const height = (chartHeight - paddingT - paddingB) / data.length;
-
     const y = height * index + paddingT;
 
     return {
@@ -43,14 +42,13 @@ const properties = data
   });
 
 const guides = xAxis.map((_, index) => {
-  const x = (chartWidth / xAxis.length) * index + paddingL;
-
+  const x = (chartWidth / xAxis.length - 1) * index;
   const width = 2;
   const height = chartHeight - axisPaddingT - axisPaddingB;
   const y = axisPaddingT;
 
   return {
-    x: x,
+    x: x + paddingL,
     y: y,
     width: width,
     height: height,
