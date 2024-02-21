@@ -2,7 +2,6 @@
 const { data } = Astro.props;
 
 import { scaleLinear } from 'd3-scale';
-import { findMaxValue } from '../utils/find-max-value';
 
 const chartWidth = 1920;
 const chartHeight = 1080;
@@ -12,7 +11,7 @@ const paddingR = 100;
 const paddingT = 100;
 const paddingB = 180;
 const gap = 20;
-const maxValue = findMaxValue(data);
+const maxValue = data.reduce((items, item) => Math.max(items, item.count), 0);
 const xAxis = new Array(8).fill(null);
 const axisPaddingB = 80;
 const axisPaddingT = 100;
