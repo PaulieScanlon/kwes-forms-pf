@@ -2,8 +2,8 @@
 const { data } = Astro.props;
 
 import { scaleLinear } from 'd3-scale';
+import { schemeSet1 } from 'd3-scale-chromatic';
 import { findMaxValue } from '../utils/find-max-value';
-import { colors } from '../utils/colors';
 
 const chartWidth = 1920;
 const chartHeight = 1080;
@@ -17,6 +17,7 @@ const xAxis = new Array(8).fill(null);
 const axisPaddingB = 80;
 const axisPaddingT = 100;
 const xValues = scaleLinear().domain([0, maxValue]).range([0, xAxis.length]).ticks();
+const colors = schemeSet1;
 
 const properties = data
   .sort((a, b) => b.count - a.count)
