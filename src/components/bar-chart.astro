@@ -40,7 +40,7 @@ const properties = data
     };
   });
 
-const guides = xAxis.map((_, index) => {
+const axis = xAxis.map((_, index) => {
   const x = (chartWidth / xAxis.length - 1) * index;
   const width = 2;
   const height = chartHeight - axisPaddingT - axisPaddingB;
@@ -62,8 +62,8 @@ const guides = xAxis.map((_, index) => {
   class='bg-brand-surface border border-brand-outline rounded'
 >
   {
-    guides.map((guide) => {
-      const { value, x, y, width, height } = guide;
+    axis.map((axi) => {
+      const { value, x, y, width, height } = axi;
 
       return (
         <>
