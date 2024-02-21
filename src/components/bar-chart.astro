@@ -78,7 +78,7 @@ const guides = xAxis.map((_, index) => {
   }
   {
     properties.map((property) => {
-      const { name, count, font, x, y, width, height, color } = property;
+      const { name, font, x, y, width, height, color } = property;
 
       return (
         <>
@@ -90,7 +90,7 @@ const guides = xAxis.map((_, index) => {
             text-anchor='end'
             font-size={font}
           >
-            {`${name} x${count}`}
+            {name}
           </text>
         </>
       );
