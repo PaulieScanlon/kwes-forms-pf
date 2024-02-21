@@ -16,7 +16,7 @@ const maxValue = findMaxValue(data);
 const xAxis = new Array(8).fill(null);
 const axisPaddingB = 80;
 const axisPaddingT = 100;
-const xValues = scaleLinear().domain([0, maxValue]).range([0, xAxis.length]).ticks();
+const xValues = scaleLinear().domain([0, maxValue]).range([0, maxValue]).ticks(xAxis.length);
 const colorValues = scaleLinear().domain([0, data.length]).range(['#f056c7', '#0091f7', '#58e6d9']);
 
 const properties = data
@@ -43,8 +43,6 @@ const properties = data
   });
 
 const guides = xAxis.map((_, index) => {
-  const value = xValues[index];
-
   const x = (chartWidth / xAxis.length) * index + paddingL;
 
   const width = 2;
@@ -52,11 +50,11 @@ const guides = xAxis.map((_, index) => {
   const y = axisPaddingT;
 
   return {
-    value: value,
     x: x,
     y: y,
     width: width,
     height: height,
+    value: xValues[index],
   };
 });
 ---
