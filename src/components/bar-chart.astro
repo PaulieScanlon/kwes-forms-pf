@@ -6,7 +6,7 @@ import { scaleLinear } from 'd3-scale';
 const chartWidth = 1920;
 const chartHeight = 1080;
 
-const paddingL = 100;
+const paddingL = 200;
 const paddingR = 100;
 const paddingT = 100;
 const paddingB = 180;
@@ -33,6 +33,7 @@ const properties = data
       count: count,
       font: 40,
       x: x,
+      textX: x - paddingL / 2,
       y: y + gap,
       width: width,
       height: height - gap,
@@ -41,7 +42,7 @@ const properties = data
   });
 
 const axis = xAxis.map((_, index) => {
-  const x = (chartWidth / xAxis.length - 1) * index;
+  const x = ((chartWidth - paddingR) / xAxis.length - 1) * index;
   const width = 2;
   const height = chartHeight - axisPaddingT - axisPaddingB;
   const y = axisPaddingT;
@@ -77,11 +78,20 @@ const axis = xAxis.map((_, index) => {
   }
   {
     properties.map((property) => {
-      const { name, font, x, y, width, height, color } = property;
+      const { name, count, font, x, textX, y, width, height, color } = property;
 
       return (
         <>
           <rect x={x} y={y} width={width} height={height} fill={color} />
+          <text
+            x={textX}
+            y={y + height / 2 + font / 2.6}
+            class='fill-brand-text font-bold'
+            text-anchor='start'
+            font-size={font}
+          >
+            {`x${count}`}
+          </text>
           <text
             x={chartWidth - paddingR - 20}
             y={y + height / 2 + font / 2.6}
