@@ -1,5 +1,5 @@
 ---
-import Main from '../layouts/main.astro';
+import Layout from '../layouts/layout.astro';
 import { groupByTime } from '../utils/group-by-time';
 import { groupByExperience } from '../utils/group-by-experience';
 import { groupByTechnology } from '../utils/group-by-technology';
@@ -26,12 +26,15 @@ const byExperience = groupByExperience(data);
 const byTechnology = groupByTechnology(data);
 ---
 
-<Main>
-  <p class='mt-0 mb-16 text-center'>Results of the survey so far.</p>
-  <h2>Technology</h2>
-  <BarChart data={byTechnology} />
-  <h2>Experience</h2>
-  <BarChart data={byExperience} />
-  <h2>Time</h2>
-  <BarChart data={byTime} />
-</Main>
+<Layout>
+  <main class='prose px-4 py-32 pb-16 mx-auto max-w-3xl'>
+    <h1 class='mb-0 text-center'>Results</h1>
+    <p class='mt-0 mb-16 text-center'>Results of the survey so far.</p>
+    <h2>Technology</h2>
+    <BarChart data={byTechnology} />
+    <h2>Experience</h2>
+    <BarChart data={byExperience} />
+    <h2>Time</h2>
+    <BarChart data={byTime} />
+  </main>
+</Layout>
