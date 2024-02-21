@@ -13,28 +13,19 @@ import Layout from '../layouts/layout.astro';
       action='https://kwesforms.com/api/foreign/forms/ei1Xxu2qASmzJXmWY4Rn'
       redirect='/submitted'
     >
-      <h2 class='m-0'>1. Technology</h2>
-      <p>Which technologies are you most interested in?</p>
-      <fieldset repeater name='unique_name' class='flex flex-col gap-6'>
-        <div repeater-group class='flex flex-col gap-6 border border-brand-guide bg-brand-surface p-4'>
-          <div class='flex flex-col gap-1'>
-            <label for='technology' class='block'>Technology</label>
-            <select id='technology' name='technology'>
-              <option hidden>Please select</option>
-              <option>React</option>
-              <option>Qwik</option>
-              <option>Astro</option>
-              <option>Remix</option>
-              <option>Serverless</option>
-              <option>Edge</option>
-              <option>Postgres</option>
-              <option>SQL</option>
-              <option>CSS</option>
-              <option>SVG</option>
-            </select>
-          </div>
+      <h2 class='m-0'>1. Time</h2>
+      <p>When do you prefer to read technical content?</p>
+      <div class='border border-brand-guide bg-brand-surface p-4'>
+        <div class='flex flex-col gap-1'>
+          <label for='time' class='block'>Time</label>
+          <select id='time' name='time'>
+            <option hidden>Please select</option>
+            <option>🌞 Daytime</option>
+            <option>🌚 Nighttime</option>
+            <option>🌓 Anytime</option>
+          </select>
         </div>
-      </fieldset>
+      </div>
       <hr />
       <h2 class='m-0'>2. Experience</h2>
       <p>How many years experience do you have?</p>
@@ -59,19 +50,28 @@ import Layout from '../layouts/layout.astro';
         </fieldset>
       </div>
       <hr />
-      <h2 class='m-0'>3. Time</h2>
-      <p>When do you prefer to read technical content?</p>
-      <div class='border border-brand-guide bg-brand-surface p-4'>
-        <div class='flex flex-col gap-1'>
-          <label for='time' class='block'>Time</label>
-          <select id='time' name='time'>
-            <option hidden>Please select</option>
-            <option>🌞 Daytime</option>
-            <option>🌚 Nighttime</option>
-            <option>🌓 Anytime</option>
-          </select>
+      <h2 class='m-0'>3. Technology</h2>
+      <p>Which technologies are you most interested in?</p>
+      <fieldset repeater name='unique_name' class='flex flex-col gap-6'>
+        <div repeater-group class='flex flex-col gap-6 border border-brand-guide bg-brand-surface p-4'>
+          <div class='flex flex-col gap-1'>
+            <label for='technology' class='block'>Technology</label>
+            <select id='technology' name='technology'>
+              <option hidden>Please select</option>
+              <option>React</option>
+              <option>Qwik</option>
+              <option>Astro</option>
+              <option>Remix</option>
+              <option>Serverless</option>
+              <option>Edge</option>
+              <option>Postgres</option>
+              <option>SQL</option>
+              <option>CSS</option>
+              <option>SVG</option>
+            </select>
+          </div>
         </div>
-      </div>
+      </fieldset>
       <hr />
       <button
         type='submit'
