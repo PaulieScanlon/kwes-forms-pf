@@ -1,8 +1,8 @@
 export const groupByTechnology = (data) => {
   const groupedData = data.reduce((result, item) => {
-    const { unique_name } = item;
+    const { technology } = item;
 
-    unique_name.forEach((key) => {
+    technology.forEach((key) => {
       const name = Object.values(key)[0];
       const existingItemIndex = result.findIndex((obj) => obj.name === name);
 
